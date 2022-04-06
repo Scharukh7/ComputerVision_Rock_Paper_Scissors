@@ -9,8 +9,8 @@
 
 >This is how the code looks like when downloaded:
 
-"""python
-import cv2
+```python
+"""import cv2
 from keras.models import load_model
 import numpy as np
 model = load_model('YOUR_MODEL.h5')
@@ -32,8 +32,9 @@ while True:
 # After the loop release the cap object
 cap.release()
 # Destroy all the windows
-cv2.destroyAllWindows()"""
-
+cv2.destroyAllWindows()
+"""
+```
 ## Milestone 2: Install the dependencies
 
 - All the dependencies were installed required to work with the project such as opencv-python, tensorflow and ipykernel as the code was worked on Visual Studio Code in Linux.
@@ -45,7 +46,8 @@ cv2.destroyAllWindows()"""
 - a game was coded using if-elif-else statement to determine the winner.
 - Then, a function was created to simulate the whole game.
 
-"""python
+```python
+"""
 def Choices():
 	player = int(input('Rock', 'Paper', 'Scissors')
 	computer = random.choices('Rock','Paper','Scissors')
@@ -62,6 +64,7 @@ def Game(player, computer):
     else:
         messages = 'Error'
 return messages"""
+```
 
 
 ## Milestone 4: Use the camera to play Rock-Paper-Scissors
@@ -69,7 +72,8 @@ return messages"""
 - The code was combined to use the webcam with the function that ask the user for an input. The manual input was replaced by the computer vision model prediction.
 using the argmax as it returns the argument for the target function that returns the max value from the targe function.
 
-"""python
+```python
+"""
 player_value = np.argmax(prediction)
 playerC = player_value
 
@@ -84,14 +88,15 @@ if prediction[0][0] > 0.5:
         playerC = 'scissors'
     else:
         #print('No Outcome')
-        playerC = 'No Outcome'
-"""
+        playerC = 'No Outcome' """
+```
 
 - the countdown was added to the game so it gives the user a bit of time to decide on their choice. For this task, time function was imported. and time.time() was used as the current time. 
   an intial time for the game was also created as a boolean, "first = True". To know if the game has started "gameStarted = False".
 - Introduction menu was created using opencv, cv2.putText:
 
-"""python
+```python
+"""
 def initialgameScreen():
     playerChoices()
     #gameWinner()
@@ -104,9 +109,11 @@ def initialgameScreen():
     #text from player
     cv2.putText(frame, str(playerC), (50,420), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,0,0))
     """
+```
 - as well as for the ingame screen cv2.putText along with the if statement for introScreen with the countdown was coded, as soon as the countdown = 0, the choices are shown
 
-"""python
+```python
+"""
 def initialGameIntro():
     #gameBegins()
     playerChoices()
@@ -130,11 +137,13 @@ def initialGameIntro():
         if int(countdown-current_time) <= 0:
             introScreen = False
             gameStarted = True
-            gameBegins()
-    """        
+            gameBegins()"""
+```
+                   
 - and the ending screen along with the results of the game where the winner is concluded and shows on the screen
 
-"""python
+```python
+"""
 def gameBegins():
     #keyStart()
     global first, introScreen, gameStarted, itsEnd, update_score, player_wins, computer_wins
@@ -172,11 +181,13 @@ def gameBegins():
         elif gameWinner(playerC, computerC) == "Draw":
             cv2.putText(frame, "Draw", (270,210), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
         else:
-            cv2.putText(frame, "Failed to choose", (200,210), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,0), 2)  
-   """         
+            cv2.putText(frame, "Failed to choose", (200,210), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,255,0), 2)"""
+```
+         
 - the score and player, computer point were also printed on the screen using cv2.putText inside the while loop
 
-"""python
+```python
+"""
     message1 = ("Round: " + str(rounds) + " ") 
     message2 = ("Player Score: " + str(player_wins))
     message3 = ("Computer Score: " + str(computer_wins))
@@ -197,8 +208,8 @@ def gameBegins():
         keyStart()
     else:
         initialgameScreen()
-        keyStart()
-"""
+        keyStart() """
+```
 ## Conclusions
 
 In my conclusion, I have learnt to have a good use my functions and split the code into various parts so it is easier to detect if there is an issue or if any change is needed. What I would like to improve is the use of globals, as there's been alot of use of globals in the code, it would be better to find an alternate way to work with the code and keep it DRY without too much of globals. This project helped me understand the various way anything can be worked on with the machine vision using openCV as well as the use of tensorflow and to work around with the data models.
